@@ -1,9 +1,12 @@
+import React from "react";
 import { Container, Group, Anchor } from '@mantine/core';
-import { MantineLogo } from '@mantinex/mantine-logo';
+
 import classes from './FooterSimple.module.css';
 
+import SVGComponent from "./svgviewer-react-output";
+
 const links = [
-  { link: 'https://github.com/yangxueya1983', label: 'github' },
+  { link: 'https://github.com/yangxueya1983', label: "Nancy's github" },
 ];
 
 const FooterSimple = () => {
@@ -22,11 +25,11 @@ const FooterSimple = () => {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <MantineLogo size={28} />
+        <SVGComponent width={50} height={50}/>
         <Group className={classes.links}>{items}</Group>
       </Container>
     </div>
   );
 }
 
-export default FooterSimple;pwd
+export default FooterSimple;
