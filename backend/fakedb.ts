@@ -48,7 +48,7 @@ export const verifyUser = (email: string, password: string) => {
   if (!user) throw new Error("User not found");
   return user;
 };
-
+ 
 export const findUserById = (id: number) => {
   const user = users.find((user) => user.id === id);
   if (!user) throw new Error("User not found");
