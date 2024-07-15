@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import DOMAIN from "../../services/endpoint";
 import axios from "axios";
 import { Button, Container } from "@mantine/core";
@@ -11,38 +12,34 @@ import {
   Badge,
 } from '@mantine/core';
 
+import { useLoaderData } from "react-router-dom";
+
 function PostDetailsPage() {
+  const post = useLoaderData();
+
   return (
     <>
       <Container>
         <Card withBorder padding="lg" radius="md">
           <Card.Section mb="sm">
             <Image
-              src="https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80"
-              alt="Top 50 underrated plants for house decoration"
-              height={180}
+              src={post.image}
+              alt={post.title}
+              height={200}
+              width={150}
             />
           </Card.Section>
 
           <Badge w="fit-content" variant="light">
-            decorations
+          {post.category}
           </Badge>
 
           <Text fw={700} mt="xs">
-            Top 50 underrated plants for house decoration
+          {post.content}
           </Text>
 
           <Group mt="lg">
-            <Avatar
-              src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png"
-              radius="sm"
-            />
-            <div>
-              <Text fw={500}>Elsa Gardenowl</Text>
-              <Text fz="xs" c="dimmed">
-                posted 34 minutes ago
-              </Text>
-            </div>
+            <Text fw={500}>Elsa Gardenowl</Text>
           </Group>
         </Card>
 
@@ -55,8 +52,9 @@ function PostDetailsPage() {
 }
 
 export const postDetailsLoader = async ({ params }) => {
-  // do something with this
-  return null;
+  const res = await axios.get(`${DOMAIN}/api/posts/${params.id}`);
+  console.log("I ran!");
+  return res.data;
 };
 
 export default PostDetailsPage;
