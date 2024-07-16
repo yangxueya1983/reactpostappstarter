@@ -27,6 +27,7 @@ function PostDetailsPage() {
               alt={post.title}
               height={200}
               width={150}
+              fit="scale-down"
             />
           </Card.Section>
 
